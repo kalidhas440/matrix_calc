@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include <stdlib.h>
 
-void* add(int r, int c, int *A, int *B)
+void* substract(int r, int c, int *A, int *B)
 {   
     int *R = malloc(r * c * sizeof(int));
 

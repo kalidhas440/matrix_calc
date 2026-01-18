@@ -21,8 +21,9 @@ void* getMatrix(int *r, int *c, char x)
     return matrix;
 }
 
-void printMatrix(int r, int c, int *R)
+void printMatrix(int r, int c, int *R, char x)
 {
+    printf("Result of A %c B\n", x);
     for (int i=0; i<r; i++) {
         for (int j=0; j<c; j++) {
             printf("%d \t", R[i * c + j]);
@@ -32,27 +33,38 @@ void printMatrix(int r, int c, int *R)
 }
 
 int main()
-{
-    int r1,c1,r2,c2,mod=0;
+{   
+    char x;
+    int r1,c1,r2,c2,mode=0;
+    int *A, *B, *R = NULL;
     printf("0 --> Add \t 1 --> Substract\n");
     printf("2 --> Multiplication /t 3 --> Division\n");
     printf("4 --> Determinant /t 5 --> Transpose\n");
     printf("Chose an operator: ");
-    scanf("%d", &mod);
+    scanf("%d", &mode);
     
-    if (mod == 0) {
-        int *A = getMatrix(&r1, &c1, 'A');
-        int *B =  getMatrix(&r2, &c2, 'B');
+    if (mode == 0 || mode == 1) {
+        A = getMatrix(&r1, &c1, 'A');
+        B = getMatrix(&r2, &c2, 'B');
         
         if (r1 == r2 && c1 == c2) {
-            
-            int *R = add(r1, c1, A, B);
-            printMatrix(r1, c1, R);
-            free(R);
-            
+            if ( mode == 0 ) {
+                R = add(r1, c1, A, B);
+                x = '+';
+            } else {
+                R = substract(r1, r2, A, B);
+                x = '-';
+            }
+            printMatrix(r1, c1, R, x);
+        } else {
+            printf("Number of columns or rows mismatch. Try again......\n");
         }
-        free(A);
-        free(B);
     }
+
+
+
+    free(A);
+    free(B);
+    free(R);
     return 0;
 }
