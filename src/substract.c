@@ -1,4 +1,3 @@
-#include "matrix.h"
 #include <stdlib.h>
 
 void* substract(int r, int c, int *A, int *B)

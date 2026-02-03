@@ -38,8 +38,8 @@ int main()
     int r1,c1,r2,c2,mode=0;
     int *A, *B, *R = NULL;
     printf("0 --> Add \t 1 --> Substract\n");
-    printf("2 --> Multiplication /t 3 --> Division\n");
-    printf("4 --> Determinant /t 5 --> Transpose\n");
+    printf("2 --> Multiplication \t 3 --> Inverse\n");
+    printf("4 --> Determinant \t 5 --> Transpose\n");
     printf("Chose an operator: ");
     scanf("%d", &mode);
     
@@ -59,6 +59,18 @@ int main()
         } else {
             printf("Number of columns or rows mismatch. Try again......\n");
         }
+    }
+    else if (mode == 2) {
+        A = getMatrix(&r1, &c1 , 'A');
+        B = getMatrix(&r2, &c2, 'B');
+
+        R = product(r1, c1, A, c2, B);
+
+        printMatrix(r1, c2, R, '*');
+
+    }
+    else if (mode == 3) {
+        
     }
 
 
